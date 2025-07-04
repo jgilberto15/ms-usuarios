@@ -18,12 +18,4 @@ public class SecurityConfig {
                 .httpBasic();
         return http.build();
     }
-
-    /*@Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable() // Deshabilitamos CSRF
-                .authorizeHttpRequests()
-                .anyRequest().permitAll(); // Permitir acceso a todos los endpoints sin autenticación
-        return http.build();
-    }*/
 }
