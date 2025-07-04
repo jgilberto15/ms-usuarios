@@ -28,7 +28,7 @@ Antes de ejecutar el proyecto, asegúrate de tener instalado lo siguiente:
 ### **1. Clonar el Repositorio**
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/jgilberto15/ms-usuarios.git
 cd ms-usuarios
 
 2. Configuración de la Base de Datos
@@ -38,22 +38,25 @@ El proyecto utiliza H2, una base de datos en memoria. No necesitas configurarla 
 Por defecto, el microservicio se ejecuta en el puerto 8081. Si necesitas cambiarlo, edita el archivo application.properties:
 
 server.port=8081
+
 Ejecución del Proyecto
 1. Compilar el Proyecto
-Ejecuta el siguiente comando para compilar el proyecto:
+    Ejecuta el siguiente comando para compilar el proyecto:
 
-mvn clean install
+    mvn clean install
+    
 2. Iniciar la Aplicación
-Ejecuta el siguiente comando para iniciar la aplicación:
+    Ejecuta el siguiente comando para iniciar la aplicación:
 
-mvn spring-boot:run
-La aplicación estará disponible en: http://localhost:8081
+    mvn spring-boot:run
+    
+    La aplicación estará disponible en: http://localhost:8081
 
 Probar la API
 1. Documentación Swagger
-Puedes acceder a la documentación interactiva de la API en:
+    Puedes acceder a la documentación interactiva de la API en:
 
-http://localhost:8081/swagger-ui.html
+    http://localhost:8081/swagger-ui.html
 
 2. Endpoints Disponibles
 Método	Endpoint	Descripción

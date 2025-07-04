@@ -12,7 +12,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/v1/usuarios/**").permitAll()
+                .requestMatchers(
+                        "/api/v1/usuarios/**",  // Permitir acceso a los endpoints de usuarios
+                        "/swagger-ui/**",       // Permitir acceso a la interfaz de Swagger
+                        "/v3/api-docs/**"       // Permitir acceso a la documentación de OpenAPI
+                ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
