@@ -3,6 +3,7 @@ package pe.sa.springcloud.sed.usuarios.service;
 import pe.sa.springcloud.sed.usuarios.model.Usuario;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public interface UsuarioService {
@@ -14,6 +15,8 @@ public interface UsuarioService {
     List<Usuario> listarUsuarios();
 
     Usuario actualizarUsuario(Long id, Usuario usuario);
+
+    Usuario actualizarParcialmente(Long id, Map<String, Object> campos);
 
     void eliminarUsuario(Long id);
 }

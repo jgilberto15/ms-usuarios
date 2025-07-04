@@ -2,6 +2,7 @@ package pe.sa.springcloud.sed.usuarios.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.sa.springcloud.sed.usuarios.dto.TelefonoDTO;
 import pe.sa.springcloud.sed.usuarios.model.Telefono;
 import pe.sa.springcloud.sed.usuarios.model.Usuario;
 import pe.sa.springcloud.sed.usuarios.repository.UsuarioRepository;
@@ -9,6 +10,7 @@ import pe.sa.springcloud.sed.usuarios.service.UsuarioService;
 import pe.sa.springcloud.sed.usuarios.util.JwtUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -69,6 +71,47 @@ public class UsuarioServiceImpl implements UsuarioService {
                     .collect(Collectors.toList());
             existente.setTelefonos(telefonosProcesados); // Asignar lista procesada
         }
+
+        return repository.save(existente);
+    }
+
+    @Override
+    public Usuario actualizarParcialmente(Long id, Map<String, Object> campos) {
+        Usuario existente = obtenerUsuarioPorId(id);
+
+        // Actualizar solo los campos proporcionados
+        campos.forEach((campo, valor) -> {
+            switch (campo) {
+                case "nombre":
+                    existente.setNombre((String) valor);
+                    break;
+                case "correo":
+                    String nuevoCorreo = (String) valor;
+                    if (!nuevoCorreo.equals(existente.getCorreo())) {
+                        Optional<Usuario> usuarioConCorreo = repository.findByCorreo(nuevoCorreo);
+                        if (usuarioConCorreo.isPresent()) {
+                            throw new IllegalArgumentException("El correo ya está registrado");
+                        }
+                    }
+                    existente.setCorreo(nuevoCorreo);
+                    break;
+                case "contrasenia":
+                    existente.setContrasenia((String) valor);
+                    break;
+                case "telefonos":
+                    List<TelefonoDTO> telefonosDTO = (List<TelefonoDTO>) valor;
+                    List<Telefono> telefonos = telefonosDTO.stream()
+                            .map(dto -> {
+                                Telefono t = new Telefono();
+                                t.setNumero(dto.getNumero());
+                                t.setCodigoCiudad(dto.getCodigoCiudad());
+                                t.setCodigoPais(dto.getCodigoPais());
+                                return t;
+                            }).collect(Collectors.toList());
+                    existente.setTelefonos(telefonos);
+                    break;
+            }
+        });
 
         return repository.save(existente);
     }
