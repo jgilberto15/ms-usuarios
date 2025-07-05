@@ -117,6 +117,24 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public Usuario actualizarTelefonos(Long id, List<TelefonoDTO> telefonosDTO) {
+        Usuario existente = obtenerUsuarioPorId(id);
+
+        // Convertir DTO a entidad
+        List<Telefono> telefonos = telefonosDTO.stream()
+                .map(dto -> {
+                    Telefono t = new Telefono();
+                    t.setNumero(dto.getNumero());
+                    t.setCodigoCiudad(dto.getCodigoCiudad());
+                    t.setCodigoPais(dto.getCodigoPais());
+                    return t;
+                }).collect(Collectors.toList());
+
+        existente.setTelefonos(telefonos);
+        return repository.save(existente);
+    }
+
+    @Override
     public void eliminarUsuario(Long id) {
         Usuario existente = obtenerUsuarioPorId(id);
         repository.delete(existente);

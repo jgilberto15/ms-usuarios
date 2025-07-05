@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.sa.springcloud.sed.usuarios.dto.TelefonoDTO;
 import pe.sa.springcloud.sed.usuarios.dto.UsuarioDTO;
 import pe.sa.springcloud.sed.usuarios.mapper.UsuarioMapper;
 import pe.sa.springcloud.sed.usuarios.model.Usuario;
@@ -83,6 +84,19 @@ public class UsuarioController {
         validarToken.validarToken(authorizationHeader);
 
         Usuario usuarioActualizado = usuarioService.actualizarParcialmente(id, campos);
+        return ResponseEntity.ok(usuarioMapper.toDTO(usuarioActualizado));
+    }
+
+    @PatchMapping("/{id}/telefonos")
+    public ResponseEntity<UsuarioDTO> actualizarTelefonosUsuario(
+            @RequestHeader("Authorization") String authorizationHeader,
+            @PathVariable Long id,
+            @RequestBody List<TelefonoDTO> telefonosDTO) {
+
+        // Validar el token
+        validarToken.validarToken(authorizationHeader);
+
+        Usuario usuarioActualizado = usuarioService.actualizarTelefonos(id, telefonosDTO);
         return ResponseEntity.ok(usuarioMapper.toDTO(usuarioActualizado));
     }
 
