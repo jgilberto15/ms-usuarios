@@ -63,129 +63,157 @@ El proyecto utiliza H2, una base de datos en memoria. No necesitas configurarla 
         GET	/api/v1/usuarios/{id}	Obtener un usuario por su ID
         PUT	/api/v1/usuarios/{id}	Actualizar un usuario existente
         DELETE	/api/v1/usuarios/{id}	Eliminar un usuario
-2. Ejemplo de Petición
-    Crear Usuario (POST)  desde Postman
-    ```bash
-    localhost:8081/api/v1/usuarios
-        {
-          "nombre": "nombre",
-            "correo": "coreo@pruba.com",
-            "contrasenia": "123asdE001",
-            "telefonos": [
-                {
-                    "numero": "000000000", 
-                    "codigoCiudad": "25",
-                    "codigoPais": "51"
-                }
-            ]        
-        }  
+   2. Ejemplo de Petición
+       Crear Usuario (POST)  desde Postman
+       ```bash
+       localhost:8081/api/v1/usuarios
+           {
+             "nombre": "nombre",
+               "correo": "coreo@pruba.com",
+               "contrasenia": "123asdE001",
+               "telefonos": [
+                   {
+                       "numero": "000000000", 
+                       "codigoCiudad": "25",
+                       "codigoPais": "51"
+                   }
+               ]        
+           }  
         
-        Respuesta exitosa:
-        {
-            "id": 1,
-            "nombre": "nombre",
-            "correo": "coreo@pruba.com",
-            "contrasenia": "123asdE001",
-            "telefonos": [
-                {
-                    "numero": "000000000",
-                    "codigoCiudad": "25",
-                    "codigoPais": "51"
-                }
-            ],
-            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuYmVjZXJhQHBydWJhLmNvbSIsImlhdCI6MTc1MTY1OTk3MCwiZXhwIjoxNzUxNzQ2MzcwfQ.05vGmIAlScfDYq6Opz_zDNX1mcXSieYXV629lyKmeaU"
-        }
-        ```
+           Respuesta exitosa:
+           {
+               "id": 1,
+               "nombre": "nombre",
+               "correo": "coreo@pruba.com",
+               "contrasenia": "123asdE001",
+               "telefonos": [
+                   {
+                       "numero": "000000000",
+                       "codigoCiudad": "25",
+                       "codigoPais": "51"
+                   }
+               ],
+               "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuYmVjZXJhQHBydWJhLmNvbSIsImlhdCI6MTc1MTY1OTk3MCwiZXhwIjoxNzUxNzQ2MzcwfQ.05vGmIAlScfDYq6Opz_zDNX1mcXSieYXV629lyKmeaU"
+           }
+   ```
 
-        Listar todos los Usuario (GET)  desde Postman        
-        http://localhost:8081/api/v1/usuarios
+##  **Listar todos los Usuario (GET)  desde Postman**        
+           http://localhost:8081/api/v1/usuarios
         
-        En Headers
-        Key: Authorization
-        Value: Bearer <Token>
+           En Headers
+           Key: Authorization
+           Value: Bearer <Token>
         
-        Respuesta exitosa
-        [
-            {
-                "id": 1,
-                "nombre": "Juan Becerra",
-                "correo": "juanbecera@pruba.com",
-                "contrasenia": "123asdE001",
-                "telefonos": [
-                    {
-                        "numero": "000000000",
-                        "codigoCiudad": "25",
-                        "codigoPais": "51"
-                    }
-                ],
-                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuYmVjZXJhQHBydWJhLmNvbSIsImlhdCI6MTc1MTY1OTk3MCwiZXhwIjoxNzUxNzQ2MzcwfQ.05vGmIAlScfDYq6Opz_zDNX1mcXSieYXV629lyKmeaU"
-            }
-        }
+           Respuesta exitosa
+```bash
+           [
+               {
+                   "id": 1,
+                   "nombre": "Juan Becerra",
+                   "correo": "juanbecera@pruba.com",
+                   "contrasenia": "123asdE001",
+                   "telefonos": [
+                       {
+                           "numero": "000000000",
+                           "codigoCiudad": "25",
+                           "codigoPais": "51"
+                       }
+                   ],
+                   "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuYmVjZXJhQHBydWJhLmNvbSIsImlhdCI6MTc1MTY1OTk3MCwiZXhwIjoxNzUxNzQ2MzcwfQ.05vGmIAlScfDYq6Opz_zDNX1mcXSieYXV629lyKmeaU"
+               }
+           }
+```
+
+           Listar usuario  por Id (GET)  desde Postman        
+           http://localhost:8081/api/v1/usuarios/1
+        
+           En Headers
+           Key: Authorization
+           Value: Bearer <Token>
+
+           Respuesta exitosa
+           {
+               "id": 1,
+               "nombre": "Juan Becerra",
+               "correo": "juanbecera@pruba.com",
+               "contrasenia": "123asdE001",
+               "telefonos": [
+                   {
+                       "numero": "000000000",
+                       "codigoCiudad": "25",
+                       "codigoPais": "51"
+                   }
+               ],
+               "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuYmVjZXJhQHBydWJhLmNvbSIsImlhdCI6MTc1MTY1OTk3MCwiZXhwIjoxNzUxNzQ2MzcwfQ.05vGmIAlScfDYq6Opz_zDNX1mcXSieYXV629lyKmeaU"
+           }
 
 
-        Listar usuario  por Id (GET)  desde Postman        
-        http://localhost:8081/api/v1/usuarios/1
+           Actualizar Usuario (PUT)  desde Postman
+           localhost:8081/api/v1/usuarios/1
         
-        En Headers
-        Key: Authorization
-        Value: Bearer <Token>
-
-        Respuesta exitosa
-        {
-            "id": 1,
-            "nombre": "Juan Becerra",
-            "correo": "juanbecera@pruba.com",
-            "contrasenia": "123asdE001",
-            "telefonos": [
-                {
-                    "numero": "000000000",
-                    "codigoCiudad": "25",
-                    "codigoPais": "51"
-                }
-            ],
-            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuYmVjZXJhQHBydWJhLmNvbSIsImlhdCI6MTc1MTY1OTk3MCwiZXhwIjoxNzUxNzQ2MzcwfQ.05vGmIAlScfDYq6Opz_zDNX1mcXSieYXV629lyKmeaU"
-        }
-
-
-        Actualizar Usuario (PUT)  desde Postman
-        localhost:8081/api/v1/usuarios/1
+           En Headers
+           Key: Authorization
+           Value: Bearer <Token>
         
-        En Headers
-        Key: Authorization
-        Value: Bearer <Token>
-        
-        {
-          "nombre": "nombre",
-            "correo": "coreo@pruba.com",
-            "contrasenia": "123asdE001",
-            "telefonos": [
-                {
-                    "numero": "000000000", 
-                    "codigoCiudad": "25",
-                    "codigoPais": "51"
-                }
-            ]        
-        }  
+           {
+             "nombre": "nombre",
+               "correo": "coreo@pruba.com",
+               "contrasenia": "123asdE001",
+               "telefonos": [
+                   {
+                       "numero": "000000000", 
+                       "codigoCiudad": "25",
+                       "codigoPais": "51"
+                   }
+               ]        
+           }  
         
         
         
-        Actualizar Parcialmente Usuario (PATCH)  desde Postman
-        localhost:8081/api/v1/usuarios/1
+           Actualizar Parcialmente Usuario (PATCH)  desde Postman
+           localhost:8081/api/v1/usuarios/1
         
-        En Headers
-        Key: Authorization
-        Value: Bearer <Token>
+           En Headers
+           Key: Authorization
+           Value: Bearer <Token>
         
-        {
-            "nombre": "Nuevo Nombre",
-            "telefonos": [
-                {
-                    "numero": "987654321",
-                    "codigoCiudad": "01",
-                    "codigoPais": "51"
-                }
-            ]
-        }
+           {
+               "nombre": "Nuevo Nombre",
+               "telefonos": [
+                   {
+                       "numero": "987654321",
+                       "codigoCiudad": "01",
+                       "codigoPais": "51"
+                   }
+               ]
+           }
+   
+   
+           PATCH
+           http://localhost:8081/api/v1/usuarios/{id}/telefonos
+   
+           En Headers
+           Key: Authorization
+           Value: Bearer <Token>
+            
+           Request
+           [
+               {
+                   "numero": "987654321",
+                   "codigoCiudad": "1",
+                   "codigoPais": "51"
+               },
+               {
+                   "numero": "912345678",
+                   "codigoCiudad": "2",
+                   "codigoPais": "51"
+               },
+               {
+                   "numero": "980779252",
+                   "codigoCiudad": "2",
+                   "codigoPais": "51"
+               }
+        ]
         
         
         Eliminar todos  Usuario (DELETE)  desde Postman        
